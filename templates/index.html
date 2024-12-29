@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webcam Capture</title>
+    <style>
+        /* Styling untuk memastikan konten berada di samping */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .video-section, .image-section {
+            width: 48%; /* Setiap bagian akan mengambil 48% dari lebar container */
+        }
+        .video-section {
+            text-align: center;
+        }
+        .image-section {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Webcam Capture</h1>
+    <div class="container">
+        <!-- Video Feed Section -->
+        <div class="video-section">
+            <img src="{{ url_for('video_feed') }}" width="640" height="480">
+            <form method="POST" action="/capture">
+                <button type="submit">Capture Image</button>
+            </form>
+
+        </div>
+
+        <!-- Image Capture Section -->
+        <div class="image-section">
+
+            {% if captured_image_url %}
+                <h2>Captured Image with Detection</h2>
+                <img src="{{ captured_image_url }}" alt="Captured Image" width="640" height="480">
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
